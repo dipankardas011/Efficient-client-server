@@ -35,12 +35,12 @@ void execute_heap(int *hashMap)
       idx++;
     }
   }
-
-  printerHeapArr
+  printf("\n\n");
+  // printerHeapArr
 
   buildHeap(HeapArr);
 
-  printerHeapArr
+  // printerHeapArr
 
   while (HeapSize > 2)
   {
@@ -96,9 +96,11 @@ int main(int argc, char **argv)
 {
   HeapSize = 1;
 
-  char msg[10000] = {'\0'};
-  printf("Enter the message\n");
-  scanf("%s",msg);
+  // char msg[10000] = {'\0'};
+  // printf("Enter the message\n");
+  // scanf("%s",msg);
+  char *msg = "My name is Dipankar";
+  printf("Message: %s\n",msg);
   int hashMap[HASHMAP_CHARACTER_SIZE] = {0};
   getFreq(msg, hashMap);
   execute_heap(hashMap);
