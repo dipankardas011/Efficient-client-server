@@ -8,12 +8,12 @@ struct HeapDS {
 };
 
 
-void heapify(struct HeapDS *, int);
+void heapify(struct HeapDS **, int);
 
-void buildHeap(struct HeapDS *);
+void buildHeap(struct HeapDS **);
 
-struct HeapDS popHeap(struct HeapDS *);
+struct HeapDS* popHeap(struct HeapDS **);
 
-void pushHeap(struct HeapDS *, struct HeapDS);
+void pushHeap(struct HeapDS **, struct HeapDS*);
 
 void swapNodeHeap(struct HeapDS *, struct HeapDS *);
