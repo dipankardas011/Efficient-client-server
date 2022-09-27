@@ -12,7 +12,7 @@ void heapify(struct HeapDS *, int);
 
 void buildHeap(struct HeapDS *);
 
-char popHeap(struct HeapDS *);
+struct HeapDS popHeap(struct HeapDS *);
 
 void pushHeap(struct HeapDS *, struct HeapDS);
 

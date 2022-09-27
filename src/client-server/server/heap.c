@@ -28,9 +28,9 @@ void heapify(struct HeapDS *arr, int i) {
   int l = 2*i;
   int r = 2*i + 1;
   int smallest = i;
-  if (arr[l].frequency < arr[smallest].frequency)
+  if (l < HeapSize && arr[l].frequency < arr[smallest].frequency)
     smallest = l;
-  if (arr[r].frequency < arr[smallest].frequency)
+  if (r < HeapSize && arr[r].frequency < arr[smallest].frequency)
     smallest = r;
 
   if (smallest == i)
@@ -45,8 +45,8 @@ void buildHeap(struct HeapDS *arr) {
     heapify(arr, i);
 }
 
-char popHeap(struct HeapDS *arr) {
-  char ret = arr[1].character;
+struct HeapDS popHeap(struct HeapDS *arr) {
+  struct HeapDS ret = arr[1];
   arr[1] = arr[HeapSize-1];
   HeapSize--;
   heapify(arr, 1);
