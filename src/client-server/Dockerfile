@@ -6,8 +6,8 @@ COPY . .
 
 LABEL MAINTAINER="Dipankar Das <dipankardas0115@gmail.com>"
 
-RUN cd server && gcc -O1 -o ../server.out main.c
-RUN cd client && gcc -O1 -o ../client.out client.c
+RUN cd server && gcc -O0 -o ../server.out main_server.c
+RUN cd client && gcc -O0 -o ../client.out main_client.c
 
 
 

@@ -48,6 +48,7 @@ void getHuffmanCodes(struct HeapDS *root, char *str, struct TableHuffman *table,
   getHuffmanCodes(root->right, right, table, index);
 }
 
+
 void execute_heap(char *message, int *hashMap)
 {
   /**
@@ -111,7 +112,15 @@ void execute_heap(char *message, int *hashMap)
   }
 
   payload.sizeTable = tableSize;
-  payload.table = tableHuff;
+  payload.table = (struct TableHuffman *)malloc(sizeof(struct TableHuffman)*tableSize);
+  for (int i=0; i<tableSize; i++) {
+    payload.table[i].character = tableHuff[i].character;
+    int j;
+    for (j=0; tableHuff[i].encode[j] != '\0'; j++)
+      payload.table[i].encode[j] = tableHuff[i].encode[j];
+    payload.table[i].encode[j] = '\0';
+  }
+  // payload.table = tableHuff;
   for (int i=0; newMessage[i] !='\0'; i++)
     payload.encode[i] = newMessage[i];
 }
@@ -127,6 +136,8 @@ void getFreq(char *str, int *hashMap)
     }
   }
 }
+
+
 
 void printerHuffmanTable(struct TableHuffman* table, int size) {
   printf("Character\tEncoded\n");
