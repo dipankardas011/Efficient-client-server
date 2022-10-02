@@ -36,13 +36,14 @@ func GenerateHeap(message string, hashMap map[byte]uint64) heap.HeapArrDS {
 	return heapArr
 }
 
-func getHuffmanCodes(root *heap.HeapDS, encode string) {
+func getHuffmanCodes(root *heap.HeapDS, encode string, table *map[byte]string) {
 	if root.Left == nil && root.Right == nil {
 		fmt.Printf("%c -> %s\n", root.Character, encode)
+		(*table)[root.Character] = encode
 		return
 	}
-	getHuffmanCodes(root.Left, encode+"0")
-	getHuffmanCodes(root.Right, encode+"1")
+	getHuffmanCodes(root.Left, encode+"0", table)
+	getHuffmanCodes(root.Right, encode+"1", table)
 }
 
 func Main_client() {
@@ -58,7 +59,6 @@ func Main_client() {
 	var heapArr heap.HeapArrDS
 	heapArr = GenerateHeap(msg, hashMap)
 
-	//heapArr.Display(HeapSize)
 	heapArrPtr := &heapArr
 	heapArrPtr.BuildHeap(HeapSize)
 	heapArr.Display(HeapSize)
@@ -77,5 +77,16 @@ func Main_client() {
 	fmt.Println((*heapArrPtr)[1])
 	var root *heap.HeapDS
 	root = heapArrPtr.PopHeap(&HeapSize)
-	getHuffmanCodes(root, "")
+	var tableHeap map[byte]string
+	tableHeap = make(map[byte]string)
+	getHuffmanCodes(root, "", &tableHeap)
+	fmt.Println(tableHeap)
+
+	var encodedMsg string
+	for _, char := range msg {
+		encodedMsg += tableHeap[byte(char)]
+	}
+	fmt.Println("Encoded Msg: ", encodedMsg)
+
+	///// Add code to send the table and the encoded message
 }
