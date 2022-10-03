@@ -20,8 +20,6 @@ func main() {
 		var clientPayload payload.Payload
 		clientPayload = client.Main_client()
 
-		//fmt.Println(clientPayload.GetEncoded())
-		//fmt.Println(clientPayload.GetTable())
 		byteArray, err := json.Marshal(clientPayload)
 		_, err = c.Write(byteArray)
 		if err != nil {
@@ -31,12 +29,12 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Println(string(byteArray))
 		fmt.Println("\n\nWhether to continue [1/0]")
 		_, err = fmt.Scanf("%d", &choice)
 		if err != nil {
 			panic("Choice Err!")
 		}
+		clientPayload.AddInfo("", nil)
 	}
 	_, err = c.Write([]byte("END"))
 	if err != nil {
