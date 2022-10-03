@@ -1,16 +1,14 @@
-FROM gcc:12-bullseye
+FROM golang:1.18
 
-WORKDIR /app
+WORKDIR /go/src
+
+#COPY go.sum .
+
+COPY go.mod .
+
+RUN go get -d || true
 
 COPY . .
 
-LABEL MAINTAINER="Dipankar Das <dipankardas0115@gmail.com>"
-
-RUN cd server && gcc -O0 -o ../server.out main_server.c
-RUN cd client && gcc -O0 -o ../client.out main_client.c
-
-
-
-# CMD ["./server.out"]
-
-# EXPOSE 8080
+RUN go build -o server.out server.go
+RUN go build -o client.out client.go

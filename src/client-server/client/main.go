@@ -4,12 +4,18 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/dipankardas011/Efficient-client-server/heap"
+	"github.com/dipankardas011/Efficient-client-server/payload"
 	"os"
 	"strings"
 )
 
 var (
 	HeapSize int
+)
+
+const (
+	SERVER_HOST = "127.0.0.1"
+	SERVER_PORT = "9988"
 )
 
 func GetFreq(message string) map[byte]uint64 {
@@ -38,7 +44,6 @@ func GenerateHeap(message string, hashMap map[byte]uint64) heap.HeapArrDS {
 
 func getHuffmanCodes(root *heap.HeapDS, encode string, table *map[byte]string) {
 	if root.Left == nil && root.Right == nil {
-		fmt.Printf("%c -> %s\n", root.Character, encode)
 		(*table)[root.Character] = encode
 		return
 	}
@@ -46,22 +51,19 @@ func getHuffmanCodes(root *heap.HeapDS, encode string, table *map[byte]string) {
 	getHuffmanCodes(root.Right, encode+"1", table)
 }
 
-func Main_client() {
+func Main_client() payload.Payload {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Hello from [[client]]")
 	fmt.Println("Enter the message to be entered..")
 	var msg string
 	msg, _ = reader.ReadString('\n')
 	msg = strings.Replace(msg, "\n", "", -1)
 	hashMap := GetFreq(msg)
-	fmt.Println(hashMap)
 
 	var heapArr heap.HeapArrDS
 	heapArr = GenerateHeap(msg, hashMap)
 
 	heapArrPtr := &heapArr
 	heapArrPtr.BuildHeap(HeapSize)
-	heapArr.Display(HeapSize)
 
 	for HeapSize > 2 {
 		var x, y, z *heap.HeapDS
@@ -74,19 +76,20 @@ func Main_client() {
 		z.Right = y
 		heapArrPtr.PushHeap(z, &HeapSize)
 	}
-	fmt.Println((*heapArrPtr)[1])
 	var root *heap.HeapDS
 	root = heapArrPtr.PopHeap(&HeapSize)
 	var tableHeap map[byte]string
 	tableHeap = make(map[byte]string)
 	getHuffmanCodes(root, "", &tableHeap)
-	fmt.Println(tableHeap)
 
 	var encodedMsg string
 	for _, char := range msg {
 		encodedMsg += tableHeap[byte(char)]
 	}
-	fmt.Println("Encoded Msg: ", encodedMsg)
 
 	///// Add code to send the table and the encoded message
+	var ret payload.Payload
+	ret = payload.PayloadDS{}
+	ret = ret.AddInfo(encodedMsg, tableHeap)
+	return ret
 }
