@@ -1,10 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/dipankardas011/Efficient-client-server/client"
-	"github.com/dipankardas011/Efficient-client-server/payload"
 	"net"
 )
 
@@ -17,24 +15,22 @@ func main() {
 	}
 	for choice != 0 {
 
-		var clientPayload payload.Payload
-		clientPayload = client.Main_client()
-
-		byteArray, err := json.Marshal(clientPayload)
-		_, err = c.Write(byteArray)
+		// client.Main_client get the encoded payload to be sent
+		encodedMessage, err := client.Main_client()
 		if err != nil {
 			panic(err)
 		}
 
+		_, err = c.Write(encodedMessage)
 		if err != nil {
-			fmt.Println(err)
+			panic(err)
 		}
+
 		fmt.Println("\n\nWhether to continue [1/0]")
 		_, err = fmt.Scanf("%d", &choice)
 		if err != nil {
 			panic("Choice Err!")
 		}
-		clientPayload.AddInfo("", nil)
 	}
 	_, err = c.Write([]byte("END"))
 	if err != nil {
