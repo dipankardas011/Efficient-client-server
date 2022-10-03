@@ -9,11 +9,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/go-client.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/heap/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-client/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +26,7 @@
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/go_sdk/go" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -53,17 +50,18 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/home/dipankar/Onedrive/github/Efficient-client-server/src/client-server/go-client"
+    "last_opened_file_path": "/home/dipankar/Onedrive/github/Efficient-client-server/src/client-server/client.go"
   }
 }]]></component>
-  <component name="RunManager" selected="Go Build.go build github.com/dipankardas011/Efficient-client-server">
-    <configuration name="go build github.com/dipankardas011/Efficient-client-server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.Efficient-client-server">
+    <configuration name="Efficient-client-server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="go-client" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
+      <kind value="FILE" />
       <package value="github.com/dipankardas011/Efficient-client-server" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/main.go" />
+      <filePath value="$PROJECT_DIR$/main|$PROJECT_DIR$/client.go" />
+      <option name="run" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -92,8 +90,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.Efficient-client-server" />
         <item itemvalue="Go Build.go build main.go (2)" />
-        <item itemvalue="Go Build.go build github.com/dipankardas011/Efficient-client-server" />
         <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build main.go (1)" />
       </list>

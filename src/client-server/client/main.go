@@ -43,12 +43,15 @@ func GenerateHeap(message string, hashMap map[byte]uint64) heap.HeapArrDS {
 }
 
 func getHuffmanCodes(root *heap.HeapDS, encode string, table *map[byte]string) {
-	if root.Left == nil && root.Right == nil {
-		(*table)[root.Character] = encode
-		return
+
+	if root != nil {
+		if root.Left == nil && root.Right == nil {
+			(*table)[root.Character] = encode
+			return
+		}
+		getHuffmanCodes(root.Left, encode+"0", table)
+		getHuffmanCodes(root.Right, encode+"1", table)
 	}
-	getHuffmanCodes(root.Left, encode+"0", table)
-	getHuffmanCodes(root.Right, encode+"1", table)
 }
 
 func Main_client() payload.Payload {
@@ -64,6 +67,17 @@ func Main_client() payload.Payload {
 
 	heapArrPtr := &heapArr
 	heapArrPtr.BuildHeap(HeapSize)
+
+	if HeapSize == 2 {
+		// only one element is there
+		var x, z *heap.HeapDS
+		x = heapArrPtr.PopHeap(&HeapSize)
+		z = new(heap.HeapDS)
+		z.Frequency = x.Frequency
+		z.Left = x
+		z.Right = nil
+		heapArrPtr.PushHeap(z, &HeapSize)
+	}
 
 	for HeapSize > 2 {
 		var x, y, z *heap.HeapDS
