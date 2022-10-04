@@ -85,3 +85,70 @@ type Heap interface {
 	PushHeap(*HeapDS, *int)
 	PeekHeap(int) *HeapDS
 }
+
+// GetFreq return the hashMap of frequency of each character
+func GetFreq(message string) map[byte]uint64 {
+	freq := make(map[byte]uint64)
+
+	for _, character := range message {
+		freq[byte(character)] = freq[byte(character)] + 1
+	}
+	return freq
+}
+
+// GenerateHeap returns HeapArray (MinHeap) Data-structure from hashMap from GetFreq
+func GenerateHeap(hashMap map[byte]uint64, HeapSize *int) HeapArrDS {
+	heapArr := make(HeapArrDS, len(hashMap)+1)
+	index := 1
+	for key, value := range hashMap {
+		heapArr[index] = new(HeapDS)
+		heapArr[index].Character = key
+		heapArr[index].Left = nil
+		heapArr[index].Right = nil
+		heapArr[index].Frequency = int64(value)
+		index++
+	}
+	*HeapSize = index
+	return heapArr
+}
+
+// GetHuffmanCodes Generate the Huffman codes by Tree Traversal
+func GetHuffmanCodes(root *HeapDS, encode string, table *map[byte]string) {
+
+	if root != nil {
+		if root.Left == nil && root.Right == nil {
+			(*table)[root.Character] = encode
+			return
+		}
+		GetHuffmanCodes(root.Left, encode+"0", table)
+		GetHuffmanCodes(root.Right, encode+"1", table)
+	}
+}
+
+// GenerateHuffmanTree create the huffmanTree using the MinHeapArray
+func GenerateHuffmanTree(heapArrPtr *HeapArrDS, HeapSize *int) *HeapDS {
+	heapArrPtr.BuildHeap(*HeapSize)
+	if *HeapSize == 2 {
+		// only one element is there
+		var x, z *HeapDS
+		x = heapArrPtr.PopHeap(HeapSize)
+		z = new(HeapDS)
+		z.Frequency = x.Frequency
+		z.Left = x
+		z.Right = nil
+		heapArrPtr.PushHeap(z, HeapSize)
+	}
+
+	for *HeapSize > 2 {
+		var x, y, z *HeapDS
+		x = heapArrPtr.PopHeap(HeapSize)
+		y = heapArrPtr.PopHeap(HeapSize)
+
+		z = new(HeapDS)
+		z.Frequency = x.Frequency + y.Frequency
+		z.Left = x
+		z.Right = y
+		heapArrPtr.PushHeap(z, HeapSize)
+	}
+	return heapArrPtr.PopHeap(HeapSize)
+}

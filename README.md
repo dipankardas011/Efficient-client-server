@@ -12,8 +12,10 @@
 cd src/client-server
 docker build -t abc .
 
+docker run --rm -d -p 8080:8080 backend
 # server
-docker run --rm -it abc bash
+
+docker exec -it $(docker ps -q) bash
 ./server.out
 
 # client
