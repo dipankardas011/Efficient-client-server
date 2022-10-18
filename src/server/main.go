@@ -1,16 +1,16 @@
-package main
+package server
 
 import (
+	"encoding/json"
 	"fmt"
 	"net"
 	"os"
 
 	"github.com/dipankardas011/Efficient-client-server/client"
 	"github.com/dipankardas011/Efficient-client-server/payload"
-	"github.com/dipankardas011/Efficient-client-server/server"
 )
 
-func main() {
+func RunServer() {
 	fmt.Println("Hello from [[server]]")
 
 	l, err := net.Listen("tcp", payload.SERVER_HOST+":"+payload.SERVER_PORT)
@@ -35,12 +35,11 @@ func main() {
 			fmt.Println("Error reading:", err.Error())
 		}
 
-		choice := server.MainDecoder(buffer[:mLen])
+		choice := MainDecoder(buffer[:mLen])
 		fmt.Println("Message from [[client]]: ", choice)
 
 		switch choice {
 		case "GET":
-			fmt.Println("\tGet the index.html!")
 			byteFile, err := os.ReadFile("/go/src/server/resources/index.html")
 			if err != nil {
 				panic(err.Error())
@@ -56,9 +55,8 @@ func main() {
 			}
 
 		default:
-			fmt.Println("\tDefault is called!")
 			var resp string
-			resp = "F** man got the wrong option try with GET"
+			resp = "Try running GET to receive the status page"
 
 			encodedMessage, err := client.MainEncoder(resp)
 			if err != nil {
@@ -73,4 +71,15 @@ func main() {
 
 		buffer = nil
 	}
+}
+func MainDecoder(jsonRecv []byte) string {
+	// wait for the data
+	// fmt.Println("Data processing for ", string(jsonRecv))
+	recvData := payload.PayloadDS{}
+	err := json.Unmarshal(jsonRecv, &recvData)
+	if err != nil {
+		panic(err)
+	}
+	ret := payload.DecodeMessage(recvData)
+	return ret
 }

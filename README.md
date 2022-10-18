@@ -9,17 +9,10 @@
 ## How to run
 
 ```bash
-cd src/client-server
-docker build -t abc .
+cd src
+docker compose build
 
-docker run --rm -d -p 8080:8080 abc
-# server
+docker compose up -d
 
-docker exec -it $(docker ps -q) bash
-./server.out
-
-# client
-docker exec -it $(docker ps -q) bash
-./client.out
-
+curl localhost:8080/homepage
 ```
