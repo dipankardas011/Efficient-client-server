@@ -40,7 +40,7 @@ func RunServer() {
 
 		switch choice {
 		case "GET":
-			byteFile, err := os.ReadFile("/go/src/server/resources/index.html")
+			byteFile, err := os.ReadFile("server/resources/index.html")
 			if err != nil {
 				panic(err.Error())
 			}
@@ -56,7 +56,21 @@ func RunServer() {
 
 		default:
 			var resp string
-			resp = "Try running GET to receive the status page"
+			resp = fmt.Sprintf(`<!DOCTYPE html>
+<html>
+<body>
+<h1>Response from Server!!</h1>
+<table>
+<th>Status</th>
+<th>Message</th>
+<tr>
+<td style="color: white; background-color: red">FAILED</td>
+<td>Try running GET</td>
+</tr>
+</table>
+<p>Message recieved %v</p>
+</body>
+</html>`, choice)
 
 			encodedMessage, err := client.MainEncoder(resp)
 			if err != nil {
@@ -74,7 +88,6 @@ func RunServer() {
 }
 func MainDecoder(jsonRecv []byte) string {
 	// wait for the data
-	// fmt.Println("Data processing for ", string(jsonRecv))
 	recvData := payload.PayloadDS{}
 	err := json.Unmarshal(jsonRecv, &recvData)
 	if err != nil {

@@ -32,30 +32,6 @@ func greet(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(fmt.Sprintf("[ %s ] Hello from Efficient client-server\n", time.Now())))
 }
 
-func getStatusPage(w http.ResponseWriter, r *http.Request) {
-
-	// client.Main_client get the encoded payload to be sent
-	encodedMessage, err := client.MainEncoder("GET")
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = c.Write(encodedMessage)
-	if err != nil {
-		panic(err)
-	}
-
-	buffer := make([]byte, 2048)
-	mLen, err := c.Read(buffer)
-	if err != nil {
-		fmt.Println("Error reading:", err.Error())
-	}
-
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	w.Write([]byte(server.MainDecoder(buffer[:mLen])))
-}
-
 func getHomePage(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
@@ -108,7 +84,7 @@ func setup() {
 func main() {
 	setup()
 	http.HandleFunc("/", getHomePage)
-	http.HandleFunc("/status", getStatusPage)
+	//http.HandleFunc("/status", getStatusPage)
 	http.HandleFunc("/greet", greet)
 	http.HandleFunc("/message", getMessage)
 	http.ListenAndServe(getPort(), nil)

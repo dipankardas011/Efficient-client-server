@@ -10,6 +10,7 @@ var (
 	HeapSize int
 )
 
+// MainEncoder FIXME: Minor buffer full incase of creating the encoded message if message is to big it does not fit into the []byte for transmittion
 // MainEncoder handler of message encoding and decoding
 func MainEncoder(msg string) ([]byte, error) {
 	hashMap := heap.GetFreq(msg)
