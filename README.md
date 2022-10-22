@@ -1,5 +1,19 @@
 # Efficient-client-server
 
+A Efficient way to communicate between client-server.
+
+**Client-Server** denotes a relationship between cooperating programs in an application,composed of clients initiating requests for services and servers providing that function or service.Basically is a distributed application framework dividing tasks between servers and clients, which either reside in the same system or communicate through a computer network or the Internet.
+
+> `Client` what requests a service or resource from server.The server can be located on or off premises.
+
+> `Server` a computer program that provides service to another computer program and its users.
+
+## What is the need?
+Efficient meaning working in such a way that gets the response from server with **least amount of bandwidth requirement**.
+
+## How it accomplishes
+Similarly this client server paradigm uses a bit encoding due to which message to be send between server and client reduces significantly. The client and server both uses a bit encoding technique by which messsage sent by client is encoded and sent to server, server decodes understands and again sends a response in encoded format then client recoving it decodes and displays the message to user
+
 ## Architecture
 ![Architecture](./architecture.png)
 
@@ -16,16 +30,4 @@ docker ps
 ```
 
 
-Client-Server denotes a relationship between cooperating programs in an application,composed of clients initiating requests for services and servers providing that function or service.Basically is a distributed application framework dividing tasks between servers and clients, which either reside in the same system or communicate through a computer network or the Internet.
 
-Client:is what requests a service or resource from server.The server can be located on or off premises.
-Server:is a computer program that provides service to another computer program and its users.
-
-WORKING:
-User runs the client and server terminal on the both sides and then sends a message from client side then server side sends the acknowledgement message to client and then a connection is established between both of them that is client and server.
-The base concept is that User enters the URL(Uniform Resource Locator) of the website or file. The Browser then requests the DNS(DOMAIN NAME SYSTEM) Server.
-DNS Server lookup for the address of the WEB Server. DNS Server responds with the IP address of the WEB Server. Browser sends over an HTTP/HTTPS request to WEB Server’s IP (provided by DNS server). Server sends over the necessary files of the website. Browser then renders the files and the website is displayed. 
-
-
-WHY EFFICIENT CLIENT-SERVER:
-Efficient meaning working in such a way that gets the result without any mistake.Similarly this client server paradigm uses a bit encoding due to which the chances of mistakes is very less.The server uses a bit encoding technique due to which it encodes the message get the answer for it then decode it and then again send it.
