@@ -25,3 +25,7 @@ WORKING:
 User runs the client and server terminal on the both sides and then sends a message from client side then server side sends the acknowledgement message to client and then a connection is established between both of them that is client and server.
 The base concept is that User enters the URL(Uniform Resource Locator) of the website or file. The Browser then requests the DNS(DOMAIN NAME SYSTEM) Server.
 DNS Server lookup for the address of the WEB Server. DNS Server responds with the IP address of the WEB Server. Browser sends over an HTTP/HTTPS request to WEB Server’s IP (provided by DNS server). Server sends over the necessary files of the website. Browser then renders the files and the website is displayed. 
+
+
+WHY EFFICIENT CLIENT-SERVER:
+Efficient meaning working in such a way that gets the result without any mistake.Similarly this client server paradigm uses a bit encoding due to which the chances of mistakes is very less.The server uses a bit encoding technique due to which it encodes the message get the answer for it then decode it and then again send it.
