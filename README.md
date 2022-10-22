@@ -15,10 +15,10 @@ Efficient meaning working in such a way that gets the response from server with 
 Similarly this client server paradigm uses a bit encoding due to which message to be send between server and client reduces significantly. The client and server both uses a bit encoding technique by which messsage sent by client is encoded and sent to server, server decodes understands and again sends a response in encoded format then client recoving it decodes and displays the message to user
 
 ## Architecture
-![Architecture](./architecture.png)
+![image](https://user-images.githubusercontent.com/65275144/197322355-2cdbc655-2ad7-4987-abb4-2ecff90a1b9c.png)
 
-## Running complete Backend
-![coverimage](./CoverImg.png)
+# Running Application
+![image](https://user-images.githubusercontent.com/65275144/197322418-3a48b8fc-723f-4b7c-b2fd-535a69f50ec5.png)
 
 ## How to run
 

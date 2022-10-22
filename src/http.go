@@ -17,6 +17,10 @@ var (
 	err error
 )
 
+const (
+	BUFFER_SIZE = 102400
+)
+
 func getPort() string {
 	port := os.Getenv("PORT")
 
@@ -56,7 +60,7 @@ func getMessage(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	buffer := make([]byte, 2048)
+	buffer := make([]byte, BUFFER_SIZE)
 	mLen, err := c.Read(buffer)
 	if err != nil {
 		fmt.Println("Error reading:", err.Error())

@@ -5,9 +5,14 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"time"
 
 	"github.com/dipankardas011/Efficient-client-server/client"
 	"github.com/dipankardas011/Efficient-client-server/payload"
+)
+
+const (
+	BUFFER_SIZE = 102400
 )
 
 func RunServer() {
@@ -29,7 +34,7 @@ func RunServer() {
 
 	// server is always open
 	for true {
-		buffer := make([]byte, 2048)
+		buffer := make([]byte, BUFFER_SIZE)
 		mLen, err := c.Read(buffer)
 		if err != nil {
 			fmt.Println("Error reading:", err.Error())
@@ -60,17 +65,34 @@ func RunServer() {
 <html>
 <body>
 <h1>Response from Server!!</h1>
+
+<pre role="img" aria-label="ASCII COW" style="color: green;">
+      ___________________________
+  &lt; I'm an expert in my field By 'Computer'. &gt;
+      ---------------------------
+          \   ^__^
+           \  (oo)\_______
+              (__)\       )\/\
+                  ||----w |
+                  ||     ||
+</pre>
+<div>
+Server Time: < %v >
+</div>
 <table>
 <th>Status</th>
 <th>Message</th>
 <tr>
-<td style="color: white; background-color: red">FAILED</td>
+<td style="color: white; background-color: blue">SUGGESTION</td>
 <td>Try running GET</td>
 </tr>
 </table>
-<p>Message recieved %v</p>
+<div style="background-color: yellow;">
+<p style="color: blue;">Message recieved</p> 
+<pre>%v</pre>
+</div>
 </body>
-</html>`, choice)
+</html>`, time.Now(), choice)
 
 			encodedMessage, err := client.MainEncoder(resp)
 			if err != nil {
