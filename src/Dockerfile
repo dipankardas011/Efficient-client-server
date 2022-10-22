@@ -14,4 +14,4 @@ RUN go build -o http.out http.go
 
 CMD ["./http.out"]
 
-EXPOSE 8080
+EXPOSE 80
