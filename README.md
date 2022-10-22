@@ -2,6 +2,8 @@
 
 A Efficient way to communicate between client-server.
 
+[Link](https://effieicent-client-server.azurewebsites.net/)
+
 **Client-Server** denotes a relationship between cooperating programs in an application,composed of clients initiating requests for services and servers providing that function or service.Basically is a distributed application framework dividing tasks between servers and clients, which either reside in the same system or communicate through a computer network or the Internet.
 
 > `Client` what requests a service or resource from server.The server can be located on or off premises.
